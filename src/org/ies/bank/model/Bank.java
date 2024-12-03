@@ -13,9 +13,11 @@ public class Bank {
         this.accounts = accounts;
     }
 
-    public void printAccount() {
+    public void showAccounts() {
         for (Account account: accounts){
-            System.out.println("IBAN: " + account.getIban()+ ". Saldo:  " + account.getBalance() + ". NIF del cliente: " + account.getCliente());
+            System.out.println("IBAN: " + account.getIban() +
+                    ". Saldo:  " + account.getBalance() +
+                    ". NIF del cliente: " + account.getCliente());
         }
     }
 
@@ -26,6 +28,42 @@ public class Bank {
             }
         }
         return null;
+    }
+    public void showAccountIban(String iban){
+        Account account = findAccount(iban);
+        if (account.getIban().equals(iban)){
+            System.out.println("IBAN: " + account.getIban() +
+                    ". Saldo:  " + account.getBalance() +
+                    ". NIF del cliente: " + account.getCliente());
+        }
+    }
+    public void showAccountNif(String nif){
+        for (Account account: accounts){
+            if (account.getCliente().getNif().equals(nif)){
+                System.out.println("IBAN: " + account.getIban() +
+                        ". Saldo:  " + account.getBalance() +
+                        ". NIF del cliente: " + account.getCliente());
+            }
+        }
+    }
+    public void addMoney(String iban, double money){
+        Account account = findAccount(iban);
+        if (account != null){
+            account.deposit(money);
+        } else {
+            System.out.println("No existe la cuenta");
+        }
+    }
+    public void showCantAccounts(String nif){
+        for (Account account: accounts){
+            int cont = 0;
+            if (account.getCliente().getNif().equals(nif)){
+                cont++;
+                System.out.println("Hay " + cont + " cuentas con el NIF " + nif);
+            }else {
+                System.out.println("No existen cuentas con el NIF " + nif);
+            }
+        }
     }
 
     public String getName() {

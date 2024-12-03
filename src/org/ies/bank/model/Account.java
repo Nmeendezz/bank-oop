@@ -12,6 +12,9 @@ public class Account {
         this.balance = saldo;
         this.cliente = cliente;
     }
+    public void deposit(double amount) {
+        balance += amount;
+    }
 
     public String getIban() {
         return iban;

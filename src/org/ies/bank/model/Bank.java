@@ -13,11 +13,11 @@ public class Bank {
         this.accounts = accounts;
     }
 
-    public void showAccounts() {
+    public void printAccount() {
         for (Account account: accounts){
-            System.out.println("IBAN: " + account.getIban() +
-                    ". Saldo:  " + account.getBalance() +
-                    ". NIF del cliente: " + account.getCliente());
+            System.out.println("IBAN: " + account.getIban());
+            System.out.println("Saldo: " + account.getBalance());
+            System.out.println("NIF del cliente: " + account.getCliente().getNif());
         }
     }
 
@@ -32,21 +32,29 @@ public class Bank {
     public void showAccountIban(String iban){
         Account account = findAccount(iban);
         if (account.getIban().equals(iban)){
-            System.out.println("IBAN: " + account.getIban() +
-                    ". Saldo:  " + account.getBalance() +
-                    ". NIF del cliente: " + account.getCliente());
+            System.out.println("IBAN: " + account.getIban());
+            System.out.println("Saldo: " + account.getBalance());
+            System.out.println("NIF del cliente: " + account.getCliente().getNif());
         }
     }
     public void showAccountNif(String nif){
         for (Account account: accounts){
             if (account.getCliente().getNif().equals(nif)){
-                System.out.println("IBAN: " + account.getIban() +
-                        ". Saldo:  " + account.getBalance() +
-                        ". NIF del cliente: " + account.getCliente());
+                System.out.println("IBAN: " + account.getIban());
+                System.out.println("Saldo: " + account.getBalance());
+                System.out.println("NIF del cliente: " + account.getCliente().getNif());
             }
         }
     }
     public void addMoney(String iban, double money){
+        Account account = findAccount(iban);
+        if (account != null){
+            account.deposit(money);
+        } else {
+            System.out.println("No existe la cuenta");
+        }
+    }
+    public void takeOutMoney(String iban, double money){
         Account account = findAccount(iban);
         if (account != null){
             account.deposit(money);
@@ -65,7 +73,6 @@ public class Bank {
             }
         }
     }
-
     public String getName() {
         return name;
     }

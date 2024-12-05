@@ -7,11 +7,11 @@ import java.util.Scanner;
 
 public class AccountReader {
     private final Scanner scanner;
-    private final Customer customer;
+    private final CustomerReader customerReader;
 
-    public AccountReader(Scanner scanner, Customer customer) {
+    public AccountReader(Scanner scanner, CustomerReader customerReader) {
         this.scanner = scanner;
-        this.customer = customer;
+        this.customerReader = customerReader;
     }
 
     public Account read() {
@@ -24,7 +24,9 @@ public class AccountReader {
         scanner.nextLine();
 
         System.out.println("Nombre del cliente: ");
-        Customer cliente = customer;
+        scanner.nextLine();
+        Customer cliente = customerReader.read();
+
 
         return new Account(
                 iban,

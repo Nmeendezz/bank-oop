@@ -15,6 +15,9 @@ public class Account {
     public void deposit(double amount) {
         balance += amount;
     }
+    public void takeOut(double amount) {
+        balance -= amount;
+    }
 
     public String getIban() {
         return iban;
